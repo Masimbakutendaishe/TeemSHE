@@ -5,7 +5,7 @@ import Footer from '../comps/Footer';
 export default function Home() {
   return (
     <div>
-
+    <HeroSection/>
     </div>
   );
 }
