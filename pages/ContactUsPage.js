@@ -1,132 +1,134 @@
+'use client';
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const inputVariants = {
-  rest: { scale: 1, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" },
-  hover: {
-    scale: 1.02,
-    boxShadow: "0px 4px 20px rgba(34, 197, 94, 0.4)",
-  },
-};
-
-export default function ContactUsPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+export default function ContactPage() {
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thanks for reaching out!");
+    setShowPopup(true);
+
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 3000);
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#f0fdfa] via-[#e0f7f4] to-[#ccfbf1] text-[#1f2937] overflow-hidden">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-10 z-0"
-      >
-        <source src="/contactbg.mp4" type="video/mp4" />
-      </video>
+    <div className="relative min-h-screen bg-[#f4f7fb] text-gray-800 overflow-hidden">
 
-      <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent z-0 backdrop-blur-sm" />
+      {/* BACKGROUND GLOW */}
+      <div className="absolute top-[-120px] left-[-120px] w-[300px] h-[300px] bg-green-300 blur-[120px] opacity-40 rounded-full"></div>
+      <div className="absolute bottom-[-120px] right-[-120px] w-[300px] h-[300px] bg-blue-300 blur-[120px] opacity-40 rounded-full"></div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24">
+      {/* HERO */}
+      <section className="relative text-center py-20 px-6">
         <motion.h1
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl sm:text-6xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#0ea5e9] to-[#22c55e]"
+          className="text-5xl font-extrabold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent"
         >
-          Let's Talk
+          Contact Us
         </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-center max-w-xl mx-auto text-gray-600 mb-16"
+
+        <p className="mt-4 text-gray-600 text-lg">
+          Reach out to Teemshe for solutions training and support
+        </p>
+      </section>
+
+      {/* CONTACT CARDS */}
+      <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+
+        {/* EMAIL */}
+        <motion.div
+          whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
+          className="p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-xl text-center"
         >
-          Send us a message and we’ll get back to you faster than your fish grow. Whether it’s a partnership, feedback, or a tech inquiry — we’re listening.
-        </motion.p>
+          <h3 className="text-xl font-semibold text-green-600">Email Us</h3>
+          <p className="mt-3 text-gray-600">info@teemshe.co.za</p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="bg-white/80 backdrop-blur-md border border-white/40 rounded-2xl p-10 shadow-2xl"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {["name", "email", "message"].map((field) => (
-                <motion.div key={field} whileHover="hover" initial="rest" animate="rest" variants={inputVariants}>
-                  {field !== "message" ? (
-                    <input
-                      name={field}
-                      type={field === "email" ? "email" : "text"}
-                      placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                      value={formData[field]}
-                      onChange={handleChange}
-                      className="w-full px-5 py-3 rounded-lg bg-white/60 text-gray-800 border border-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]"
-                      required
-                    />
-                  ) : (
-                    <textarea
-                      name="message"
-                      rows="5"
-                      placeholder="Message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="w-full px-5 py-3 rounded-lg bg-white/60 text-gray-800 border border-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#22c55e]"
-                      required
-                    />
-                  )}
-                </motion.div>
-              ))}
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.03 }}
-                type="submit"
-                className="w-full py-3 bg-gradient-to-r from-[#22c55e] to-[#0ea5e9] text-white font-bold rounded-lg shadow-lg hover:shadow-[#22c55e]/40 transition-all"
-              >
-                🚀 Send Message
-              </motion.button>
-            </form>
-          </motion.div>
+        {/* PHONE */}
+        <motion.div
+          whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
+          className="p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-xl text-center"
+        >
+          <h3 className="text-xl font-semibold text-blue-600">Call Us</h3>
+          <p className="mt-3 text-gray-600">+263782000510</p>
+        </motion.div>
 
-          {/* Contact Info */}
-          <motion.div
-            className="flex flex-col justify-center space-y-6 text-gray-700"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+        {/* ADDRESS */}
+        <motion.div
+          whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
+          className="p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-xl text-center"
+        >
+          <h3 className="text-xl font-semibold text-green-600">Visit Us</h3>
+          <p className="mt-3 text-gray-600">South Africa</p>
+        </motion.div>
+
+      </section>
+
+      {/* EMAIL FORM */}
+      <section className="max-w-3xl mx-auto mt-20 px-6">
+        <motion.form
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="p-8 rounded-3xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-2xl space-y-6"
+        >
+          <h3 className="text-2xl font-bold text-center bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+            Send Email
+          </h3>
+
+          <input
+            type="text"
+            placeholder="Your Name"
+            required
+            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-300"
+          />
+
+          <input
+            type="email"
+            placeholder="Your Email"
+            required
+            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          />
+
+          <textarea
+            placeholder="Your Message"
+            rows="4"
+            required
+            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-300"
+          ></textarea>
+
+          <button
+            type="submit"
+            className="w-full py-3 rounded-lg bg-gradient-to-r from-green-400 to-blue-400 text-white font-semibold shadow-lg hover:scale-105 transition"
           >
-            <div>
-              <h3 className="font-semibold text-[#0ea5e9] mb-1">🌍 Address</h3>
-              <p>1 AIoT Lane, AquaTech Valley, Harare, Zimbabwe</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-[#0ea5e9] mb-1">📞 Phone</h3>
-              <p>+263 71 234 5678</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-[#0ea5e9] mb-1">📧 Email</h3>
-              <p>hello@smartponds.co.zw</p>
-            </div>
-            <motion.div
-              whileHover={{ rotateY: 10, rotateX: 5 }}
-              transition={{ type: "spring", stiffness: 100 }}
-              className="mt-10 w-full h-52 rounded-xl bg-gradient-to-tr from-[#22c55e]/20 to-[#0ea5e9]/20 border border-white/30 shadow-inner flex items-center justify-center text-3xl font-bold text-gray-700 backdrop-blur-sm"
-            >
-              🤝 Let’s Collaborate
-            </motion.div>
+            Send Message
+          </button>
+        </motion.form>
+      </section>
+
+      {/* POPUP */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-white p-6 rounded-2xl shadow-2xl text-center"
+          >
+            <h4 className="text-xl font-semibold text-green-600">
+              Email sent successfully
+            </h4>
+            <p className="text-gray-600 mt-2">
+              We will get back to you
+            </p>
           </motion.div>
         </div>
-      </div>
+      )}
+
     </div>
   );
 }
