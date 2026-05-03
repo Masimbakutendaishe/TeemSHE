@@ -52,7 +52,7 @@ export default function CompanyPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent"
+            className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 via-cyan-300 to-blue-500 bg-clip-text text-transparent"
           >
             Empowering the Future with Smart Innovation
           </motion.h1>
