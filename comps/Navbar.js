@@ -86,7 +86,7 @@ const subLinks = [
         { href: "/ProductPageSoftwareMobileApps", label: "Mobile App Development" },
         { href: "/ProductPageSoftwareWebsites", label: "Web Development" },
         { href: "/ProductPageSoftwareDataScience", label: "Data Science and ML" },
-        { href: "/automation/robotics", label: "AI Apps" },
+        { href: "/AIAppsPage", label: "AI Apps" },
       ],
     },
     {
