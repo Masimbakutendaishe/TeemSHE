@@ -51,7 +51,7 @@ export default function CareersPage() {
           Join Our Team
         </h1>
         <p className="text-center max-w-2xl mx-auto text-gray-700 mb-12">
-          We’re building the future of aquaculture tech. If you're passionate about sustainable innovation, apply below.
+          We are building the future of aquaculture tech. If you're passionate about sustainable innovation, apply below.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
