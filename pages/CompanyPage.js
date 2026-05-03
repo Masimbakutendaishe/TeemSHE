@@ -23,17 +23,17 @@ export default function CompanyPage() {
       {/* HERO SECTION */}
       <section className="relative h-[80vh] flex items-center justify-center text-center px-6 overflow-hidden">
 
-        {/* 3D ROTATING GLASS CUBE */}
-        <motion.div
-          className="absolute w-[220px] h-[220px] rounded-3xl backdrop-blur-xl border border-white/40"
-          style={{
-            background: "linear-gradient(135deg, rgba(0,172,193,0.25), rgba(168,85,247,0.25))",
-            boxShadow: "0 30px 80px rgba(0,0,0,0.15)",
-            transformStyle: "preserve-3d",
-          }}
-          animate={{ rotateY: 360, rotateX: 360 }}
-          transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
-        />
+       {/* 3D ROTATING GLASS CUBE */}
+<motion.div
+  className="absolute w-[220px] h-[220px] rounded-3xl backdrop-blur-xl border border-white/40"
+  style={{
+    background: "linear-gradient(135deg, rgba(144,238,144,0.3), rgba(173,216,230,0.3))", // light green → light blue
+    boxShadow: "0 30px 80px rgba(0,0,0,0.15)",
+    transformStyle: "preserve-3d",
+  }}
+  animate={{ rotateY: 360, rotateX: 360 }}
+  transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+/>
 
         {/* VIDEO OVERLAY */}
         <video
