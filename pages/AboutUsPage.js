@@ -92,7 +92,7 @@ export default function AboutUsPage() {
           Meet the Team
         </h1>
         <p className="text-center max-w-2xl mx-auto text-gray-700 mb-16">
-          We're a team of passionate engineers, creatives, and scientists building the next generation of AI-powered aquaculture tools.
+          We are a team of passionate engineers, creatives, and scientists building the next generation of AI-powered aquaculture tools.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
