@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef } from "react";
 import { motion } from "framer-motion";
 
@@ -12,118 +14,150 @@ export default function CompanyPage() {
   };
 
   return (
-    <div className="bg-[#f8f9fc] text-[#1f2937]">
-      {/* Hero with animated 3D-ish cube + video overlay */}
-      <section className="relative h-[70vh] flex items-center justify-center text-center px-4 overflow-hidden">
-        {/* Rotating 3D-ish cube */}
+    <div className="relative bg-[#f4f7fb] text-gray-800 overflow-hidden">
+
+      {/* BACKGROUND GLOW ORBS */}
+      <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-cyan-300 rounded-full blur-[120px] opacity-40"></div>
+      <div className="absolute bottom-[-120px] right-[-100px] w-[300px] h-[300px] bg-purple-300 rounded-full blur-[120px] opacity-40"></div>
+
+      {/* HERO SECTION */}
+      <section className="relative h-[80vh] flex items-center justify-center text-center px-6 overflow-hidden">
+
+        {/* 3D ROTATING GLASS CUBE */}
         <motion.div
+          className="absolute w-[220px] h-[220px] rounded-3xl backdrop-blur-xl border border-white/40"
           style={{
-            width: 200,
-            height: 200,
-            backgroundColor: "#00acc1",
-            borderRadius: 24,
-            boxShadow: "0 20px 40px rgba(0, 172, 193, 0.5)",
-            perspective: 800,
-            position: "absolute",
-            inset: 0,
-            margin: "auto",
+            background: "linear-gradient(135deg, rgba(0,172,193,0.25), rgba(168,85,247,0.25))",
+            boxShadow: "0 30px 80px rgba(0,0,0,0.15)",
             transformStyle: "preserve-3d",
           }}
-          animate={{
-            rotateY: 360,
-            rotateX: 360,
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 10,
-            ease: "linear",
-          }}
+          animate={{ rotateY: 360, rotateX: 360 }}
+          transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
         />
 
-        {/* Transparent Video Overlay */}
+        {/* VIDEO OVERLAY */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-10 z-0"
+          className="absolute inset-0 w-full h-full object-cover opacity-5"
         >
           <source src="/pagevid2.mp4" type="video/mp4" />
         </video>
 
-        {/* Text Content */}
+        {/* HERO TEXT */}
         <div className="relative z-10 max-w-3xl">
-          <h2 className="text-5xl font-bold mb-4 text-gray-800">
-            Empowering the Future with Smart Tech
-          </h2>
-          <p className="text-lg text-gray-600">
-            From robotics for kids to accredited AI training, Teemshe builds intelligent, accessible solutions.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => scrollTo(missionRef)}
-              className="px-4 py-2 rounded-md bg-[#00acc1] text-white hover:bg-[#0097a7] transition"
-            >
-              Our Mission
-            </button>
-            <button
-              onClick={() => scrollTo(historyRef)}
-              className="px-4 py-2 rounded-md bg-[#00acc1] text-white hover:bg-[#0097a7] transition"
-            >
-              Our History
-            </button>
-            <button
-              onClick={() => scrollTo(visionRef)}
-              className="px-4 py-2 rounded-md bg-[#00acc1] text-white hover:bg-[#0097a7] transition"
-            >
-              Our Vision
-            </button>
-            <button
-              onClick={() => scrollTo(valuesRef)}
-              className="px-4 py-2 rounded-md bg-[#00acc1] text-white hover:bg-[#0097a7] transition"
-            >
-              Our Values
-            </button>
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent"
+          >
+            Empowering the Future with Smart Innovation
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-6 text-lg text-gray-600"
+          >
+            From robotics and AI to professional training, qualifications, and custom learning materials —
+            Teemshe builds intelligent solutions for both technical and non-technical growth.
+          </motion.p>
+
+          {/* NAV BUTTONS */}
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            {[{label:"Mission",ref:missionRef},
+              {label:"History",ref:historyRef},
+              {label:"Vision",ref:visionRef},
+              {label:"Values",ref:valuesRef}
+            ].map((item, i) => (
+              <button
+                key={i}
+                onClick={() => scrollTo(item.ref)}
+                className="px-5 py-2 rounded-full bg-white/70 backdrop-blur-md border border-gray-200 hover:bg-white transition shadow-md"
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* About Sections */}
-      <main className="max-w-6xl mx-auto px-6 py-16 space-y-24">
-        {/* Mission */}
-        <section ref={missionRef} className="scroll-mt-20">
-          <h3 className="text-3xl font-bold mb-4 text-[#00acc1]">Our Mission</h3>
-          <p className="text-gray-700 leading-relaxed text-lg">
-            At Teemshe, we strive to democratize access to advanced technologies like AI, IoT, and robotics by making them affordable, inclusive, and scalable. Whether its through educational programs, custom mobile apps, or data-driven web platforms, our goal is to build a digitally empowered Africa — one solution at a time.
-          </p>
-        </section>
+      {/* CONTENT */}
+      <main className="max-w-6xl mx-auto px-6 py-20 space-y-28">
 
-        {/* History */}
-        <section ref={historyRef} className="scroll-mt-20">
-          <h3 className="text-3xl font-bold mb-4 text-[#00acc1]">Our History</h3>
-          <p className="text-gray-700 leading-relaxed text-lg">
-            Teemshe began as a small digital lab founded by engineers and educators passionate about local innovation. From early workshops teaching kids how to build robots to complex enterprise AI deployments, our journey has always centered on meaningful impact and measurable transformation.
-          </p>
-        </section>
+        {/* REUSABLE CARD STYLE */}
+        {[
+          {
+            ref: missionRef,
+            title: "Our Mission",
+            text: `At Teemshe, our mission is to democratize access to advanced technologies such as AI, IoT, and robotics while also delivering high-quality training, qualifications, and custom learning materials. We serve both technical and non-technical sectors, ensuring individuals, businesses, and institutions gain practical, relevant skills for real-world impact.`
+          },
+          {
+            ref: historyRef,
+            title: "Our History",
+            text: `Teemshe started as a small innovation lab driven by engineers and educators. Over time, it evolved into a multi-disciplinary company delivering technology solutions, professional training programs, and tailored educational content. From robotics workshops for children to enterprise systems and accredited training, our growth has always been impact-focused.`
+          },
+          {
+            ref: visionRef,
+            title: "Our Vision",
+            text: `We envision a future where technology, education, and skills development are seamlessly integrated. Teemshe aims to lead in digital transformation by providing not only cutting-edge solutions but also accessible training and qualifications across both technical and non-technical industries.`
+          }
+        ].map((section, i) => (
+          <motion.section
+            key={i}
+            ref={section.ref}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative group"
+          >
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-200/40 to-purple-200/40 blur-xl opacity-0 group-hover:opacity-100 transition"></div>
 
-        {/* Vision */}
-        <section ref={visionRef} className="scroll-mt-20">
-          <h3 className="text-3xl font-bold mb-4 text-[#00acc1]">Our Vision</h3>
-          <p className="text-gray-700 leading-relaxed text-lg">
-            We envision a world where every learner, creator, and business has the tools to thrive in a smart, data-driven society. Teemshe aims to lead Africas digital transformation by bridging tech education with practical implementation.
-          </p>
-        </section>
+            <div className="relative p-8 rounded-3xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-xl">
+              <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+                {section.title}
+              </h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {section.text}
+              </p>
+            </div>
+          </motion.section>
+        ))}
 
-        {/* Values */}
-        <section ref={valuesRef} className="scroll-mt-20">
-          <h3 className="text-3xl font-bold mb-4 text-[#00acc1]">Our Values</h3>
-          <ul className="text-gray-700 text-lg space-y-2 list-disc list-inside">
-            <li><strong>Innovation:</strong> We create future-ready technologies tailored to African contexts.</li>
-            <li><strong>Accessibility:</strong> We design with inclusion in mind — for learners, startups, and rural communities.</li>
-            <li><strong>Integrity:</strong> We prioritize transparency, data ethics, and user trust.</li>
-            <li><strong>Impact:</strong> Every product or program we launch is tied to real-world outcomes.</li>
-          </ul>
-        </section>
+        {/* VALUES */}
+        <motion.section
+          ref={valuesRef}
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h3 className="text-3xl font-bold mb-10 text-center bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+            Our Core Values
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {title:"Innovation",desc:"Future-ready tech and training solutions."},
+              {title:"Accessibility",desc:"Inclusive learning for all sectors."},
+              {title:"Integrity",desc:"Ethical, transparent and trusted delivery."},
+              {title:"Impact",desc:"Real measurable outcomes in skills and systems."}
+            ].map((val, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
+                className="p-6 rounded-2xl bg-white/80 backdrop-blur-lg border border-gray-200 shadow-lg"
+              >
+                <h4 className="text-xl font-semibold text-cyan-600">{val.title}</h4>
+                <p className="text-gray-600 mt-2">{val.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
       </main>
     </div>
   );
