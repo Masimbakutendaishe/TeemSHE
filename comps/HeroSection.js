@@ -6,7 +6,7 @@ const HeroSection = () => {
     <div className="relative w-full h-[500px] overflow-hidden">
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="/teemvid.mp4"
+        src="/teemvid_.mp4"
         autoPlay
         loop
         muted
